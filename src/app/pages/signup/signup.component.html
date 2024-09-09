@@ -1,0 +1,111 @@
+<main class="flex flex-col justify-start items-center mt-[6rem] gap-5 h-full w-full">
+    <h1 class="text-zinc-900 dark:text-zinc-300 text-3xl font-semibold">Sign Up</h1>
+    <form (ngSubmit)="onSubmit()" #signUpForm="ngForm" class="flex flex-col justify-start items-center max-w-1/3 scale-90">
+      <div class="flex justify-center items-start gap-2 w-full">
+        <label class="form-control w-full">
+          <div class="label">
+            <span class="label-text text-zinc-900 dark:text-zinc-300 font-semibold text-lg">Firstname</span>
+          </div>
+          <input
+            class="input input-bordered w-full text-zinc-900 dark:text-zinc-300 bg-zinc-800/20 placeholder-zinc-800/50 dark:placeholder-zinc-400/50 text-base font-semibold"
+            type="text"
+            name="firstname"
+            [(ngModel)]="firstname"
+            required
+            placeholder="Jhoe"
+          />
+        </label>
+        <label class="form-control w-full max-w-xs">
+          <div class="label">
+            <span class="label-text text-zinc-900 dark:text-zinc-300 font-semibold text-lg">Lastname</span>
+          </div>
+          <input
+            class="input input-bordered w-full max-w-xs bg-zinc-800/20 placeholder-zinc-800/50 dark:placeholder-zinc-400/50 text-base font-semibold text-zinc-900 dark:text-zinc-300"
+            type="text"
+            name="lastname"
+            [(ngModel)]="lastname"
+            required
+            placeholder="Doe"
+          />
+        </label>
+      </div>
+      <label class="form-control w-full">
+        <div class="label">
+          <span class="label-text text-zinc-900 dark:text-zinc-300 font-semibold text-lg">Username</span>
+        </div>
+        <input
+          class="input input-bordered w-full max-w-full bg-zinc-800/20 placeholder-zinc-800/50 dark:placeholder-zinc-400/50 text-base font-semibold text-zinc-900 dark:text-zinc-300"
+          type="text"
+          name="username"
+          [(ngModel)]="username"
+          required
+          placeholder="Miims"
+        />
+      </label>
+      <label class="form-control w-full">
+        <div class="label">
+          <span class="label-text text-zinc-900 dark:text-zinc-300 font-semibold text-lg">Email</span>
+        </div>
+        <input
+          class="input input-bordered w-full max-w-full bg-zinc-800/20 placeholder-zinc-800/50 dark:placeholder-zinc-400/50 text-base font-semibold text-zinc-900 dark:text-zinc-300"
+          type="email"
+          name="email"
+          [(ngModel)]="email"
+          required
+          placeholder="amine.chr2@gmail.com"
+        />
+      </label>
+      <label class="form-control w-full">
+        <div class="label">
+          <span class="label-text text-zinc-900 dark:text-zinc-300 font-semibold text-lg">Date of birth</span>
+        </div>
+        <input
+          class="input input-bordered w-full max-w-full bg-zinc-800/20 placeholder-zinc-800/50 dark:placeholder-zinc-400/50 text-base font-semibold text-zinc-900 dark:text-zinc-300"
+          type="date"
+          name="dob"
+          [(ngModel)]="dob"
+        />
+      </label>
+      <div class="flex justify-center items-start gap-2 w-full">
+        <label class="form-control w-full">
+          <div class="label">
+            <span class="label-text text-zinc-900 dark:text-zinc-300 font-semibold text-lg">Password</span>
+          </div>
+          <input
+            class="input input-bordered w-full max-w-xs bg-zinc-800/20 placeholder-zinc-800/50 dark:placeholder-zinc-400/50 text-base font-semibold text-zinc-900 dark:text-zinc-300"
+            type="password"
+            name="password"
+            [(ngModel)]="password"
+            required
+            placeholder="***********"
+          />
+        </label>
+        <label class="form-control w-full">
+          <div class="label">
+            <span class="label-text text-zinc-900 dark:text-zinc-300 font-semibold text-lg">Confirm Password</span>
+          </div>
+          <input
+            class="input input-bordered w-full max-w-xs bg-zinc-800/20 placeholder-zinc-800/50 dark:placeholder-zinc-400/50 text-base font-semibold text-zinc-900 dark:text-zinc-300"
+            type="password"
+            name="confirmPassword"
+            [(ngModel)]="confirmPassword"
+            required
+            placeholder="***********"
+          />
+        </label>
+      </div>
+      <button type="submit" [disabled]="loading" class="w-full btn max-w-full bg-zinc-900 dark:bg-zinc-300 text-base font-semibold flex justify-center items-center border-none h-[3.5rem] my-10 hover:bg-zinc-800/40 dark:hover:bg-zinc-400/50 duration-300">
+        <ng-container *ngIf="loading">
+          <div class="flex items-end justify-center text-zinc-300 dark:text-zinc-900 text-lg gap-2">
+            <p>Loading</p>
+            <span class="loading loading-dots loading-xs mb-0.5"></span>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="!loading">
+          <p class="text-zinc-300 dark:text-zinc-900 font-semibold text-lg">Register</p>
+        </ng-container>
+      </button>
+      <p *ngIf="error" class="error text-zinc-900 dark:text-zinc-300 text-lg font-medium">{{ error }}</p>
+    </form>
+  </main>
+  
