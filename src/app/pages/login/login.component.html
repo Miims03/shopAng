@@ -1,1 +1,50 @@
-<p>login works!</p>
+<main class="flex flex-col justify-start items-center mt-[10rem] gap-8 h-full w-full">
+    <h1 class="text-zinc-900 dark:text-zinc-300 text-3xl font-semibold">Login</h1>
+  
+    <form (ngSubmit)="handleSubmit($event)" class="flex flex-col justify-start items-center max-w-1/3 scale-90">
+        <div class='flex justify-center items-start gap-2 w-full '>
+            <input class='input input-bordered w-full h-0 border-none'/>
+            <input class='input input-bordered w-full h-0 border-none'/>
+        </div>
+        <label class="form-control w-full">
+        <div class="label">
+          <span class="label-text text-zinc-900 dark:text-zinc-300 font-semibold text-lg">
+            Email <span class='text-zinc-800/60 dark:text-zinc-400/60'>( or username )</span>
+          </span>
+        </div>
+        <input
+          class="input input-bordered w-full max-w-full bg-zinc-800/20 text-base font-semibold text-zinc-900 dark:text-zinc-300"
+          type="text"
+          [(ngModel)]="loginField"
+          name="loginField"
+          required
+        />
+      </label>
+  
+      <label class="form-control w-full">
+        <div class="label">
+          <span class="label-text text-zinc-900 dark:text-zinc-300 font-semibold text-lg">Password</span>
+        </div>
+        <input
+          class="input input-bordered w-full max-w-full bg-zinc-800/20 text-base font-semibold text-zinc-900 dark:text-zinc-300"
+          type="password"
+          [(ngModel)]="password"
+          name="password"
+          required
+        />
+      </label>
+  
+      <button type="submit" [disabled]="loading" class="w-full btn max-w-full bg-zinc-900 dark:bg-zinc-300 text-base font-semibold flex justify-center items-center border-none h-[3.5rem] my-10 hover:bg-zinc-800/50 dark:hover:bg-zinc-400/50 duration-500">
+        <div *ngIf="loading" class="flex items-end justify-center text-zinc-300 dark:text-zinc-900 text-lg gap-2">
+          <p>Loading</p>
+          <span class="loading loading-dots loading-xs mb-0.5"></span>
+        </div>
+        <div *ngIf="!loading">
+          <p class="text-zinc-300 dark:text-zinc-900 font-semibold text-xl">Login</p>
+        </div>
+      </button>
+  
+      <p *ngIf="error" class="error text-zinc-900 dark:text-zinc-300 text-lg font-medium">{{ error }}</p>
+    </form>
+  </main>
+  

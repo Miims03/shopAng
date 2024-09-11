@@ -49,18 +49,13 @@ export class SignupComponent implements OnInit {
       dob: dobFormatted,
       firstname: this.firstname,
       lastname: this.lastname
-    }).subscribe({
-      next: (data) => {
-        localStorage.setItem('token', data.token);
-        this.router.navigate(['/']);
-      },
-      error: (err) => {
-        this.error = err.error.message || 'An error occurred.';
-        console.error('Error details:', err);
-      },
-      complete: () => {
-        this.loading = false;
-      }
+    }).then(data => {
+      console.log('Signup successful', data);
+      localStorage.setItem('token', data.token);
+      this.loading = false;
+    }).catch(err => {
+      this.error = err.response?.data || 'An error occurred.';
+      this.loading = false;
     });
   }
 }
