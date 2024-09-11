@@ -43,8 +43,9 @@
           <p class="text-zinc-300 dark:text-zinc-900 font-semibold text-xl">Login</p>
         </div>
       </button>
-  
+      
       <p *ngIf="error" class="error text-zinc-900 dark:text-zinc-300 text-lg font-medium">{{ error }}</p>
     </form>
+    <p *ngIf="confirmationMessage" class="error text-zinc-900 dark:text-zinc-300 text-lg font-medium">{{ confirmationMessage  }}</p>
   </main>
   

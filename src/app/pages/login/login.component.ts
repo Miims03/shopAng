@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
-import { Router, RouterLink } from '@angular/router';
+import { Router, RouterLink, ActivatedRoute } from '@angular/router';
 import * as validator from 'validator'; 
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -12,13 +12,25 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   loginField: string = '';
   password: string = '';
   error: string | null = null;
   loading: boolean = false;
+  confirmationMessage: string | null = null;
 
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(private route: ActivatedRoute, private userService: UserService, private router: Router) {}
+ 
+  async ngOnInit(): Promise<void> {
+    this.route.queryParams.subscribe(params => {
+      this.confirmationMessage = params['message'] || null;
+    });
+    if(this.confirmationMessage){
+      setTimeout(() => {
+        this.confirmationMessage = null;
+      }, 5000); // 5 seconds to show the message before disappearing.
+    }
+  }
 
   async handleSubmit(event: Event): Promise<void> {
     event.preventDefault();
@@ -40,7 +52,12 @@ export class LoginComponent {
         this.router.navigate(['/']);
       }, 3000);
     } catch (err: any) {
-      this.error = err.response?.data || 'An error occurred.';
+      if (err.response?.data.message){
+        this.error = err.response?.data.message;
+      }else{
+        this.error = err.response?.data;
+      }
+      
     } finally {
       this.loading = false;
     }

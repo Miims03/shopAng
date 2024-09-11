@@ -13,7 +13,7 @@ export class UserService {
       const response = await axiosInstance.get(`/users/find/${userId}`);
       return response.data;
     } catch (error: any) {
-      this.handleError(error);
+      throw(error);
     }
   }
 
@@ -22,7 +22,7 @@ export class UserService {
       const response = await axiosInstance.get('/users/find');
       return response.data;
     } catch (error: any) {
-      this.handleError(error);
+      throw(error);
     }
   }
 
@@ -31,7 +31,7 @@ export class UserService {
       const response = await axiosInstance.post('/users/login', credentials);
       return response.data;
     } catch (error: any) {
-      this.handleError(error);
+      throw(error);
     }
   }
 
@@ -40,7 +40,17 @@ export class UserService {
       const response = await axiosInstance.post('/users/register', user);
       return response.data;
     } catch (error: any) {
-      this.handleError(error);
+      throw(error);
+    }
+  }
+  async confirm(token: string): Promise<any> {
+    try {
+      const response = await axiosInstance.get('/users/confirm-email', {
+        params: { token }
+      });
+      return response.data;
+    } catch (error: any) {
+      throw(error);
     }
   }
 

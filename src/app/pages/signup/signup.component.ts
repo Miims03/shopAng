@@ -50,10 +50,12 @@ export class SignupComponent implements OnInit {
       firstname: this.firstname,
       lastname: this.lastname
     }).then(data => {
-      console.log('Signup successful', data);
+      // console.log('Signup successful', data);
       localStorage.setItem('token', data.token);
+      this.error = 'Signup succes';
       this.loading = false;
     }).catch(err => {
+      console.log(err);
       this.error = err.response?.data || 'An error occurred.';
       this.loading = false;
     });
