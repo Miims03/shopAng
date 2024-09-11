@@ -18,11 +18,9 @@ export class ConfirmEmailComponent implements OnInit {
         try {
           const conf = await this.userService.confirm(token);
           console.log('Confirmation successful:', conf);
-          // Redirige vers la page de login avec un message de succès
           this.router.navigate(['/login'], { queryParams: { message: 'Email confirmed successfully! Please log in.' } });
         } catch (error) {
           console.error('Error confirming email:', error);
-          // Redirige vers la page de login avec un message d'erreur
           this.router.navigate(['/login'], { queryParams: { message: 'Error confirming email. Please try again.' } });
         }
       }

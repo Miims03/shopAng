@@ -17,7 +17,6 @@ export class ToggleDmComponent implements OnInit {
     
     const savedTheme = localStorage.getItem('theme');
 
-    // Vérification initiale du thème enregistré
     if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
       this.setDarkMode(true);
     } else {

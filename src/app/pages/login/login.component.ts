@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
     if(this.confirmationMessage){
       setTimeout(() => {
         this.confirmationMessage = null;
-      }, 5000); // 5 seconds to show the message before disappearing.
+      }, 5000); 
     }
   }
 
